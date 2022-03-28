@@ -18,7 +18,7 @@ function ProductPreview({
     return (
         <ProductPreviewStyles {...props}>
             <ProductImage>
-                <img src={productImage} alt="EC logotypes" width="320px" height="184"/>
+                <img src={productImage.previewImage} alt="EC logotypes" width="320px" height="184"/>
             </ProductImage>
             <ProductName>{productName}</ProductName>
             <ProductPrice>${productPrice}</ProductPrice>

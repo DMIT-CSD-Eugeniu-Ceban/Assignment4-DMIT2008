@@ -7,9 +7,13 @@ import {
     ProductPrice,
     ProductDescription,
 } from "./styles";
+
 import { Label, Input } from "ui/forms";
 import { ProductImageDropBox } from "../ProductImageDropBox";
 import { TextArea } from "ui/forms/textarea";
+
+//Assignment4 elements
+
 
 function ProductDataEntryForm({
     children,
@@ -17,10 +21,11 @@ function ProductDataEntryForm({
     handleProductPrice,
     setProductImage,
     handleProductDescription,
+    handleSubmit,
     ...props
 }) {
     return (
-        <ProductDataEntryFormStyles {...props}>
+        <ProductDataEntryFormStyles {...props} onSubmit={handleSubmit}>
             <div>
                 <ProductImage>
                     <Label>Product Image</Label>
@@ -62,6 +67,12 @@ function ProductDataEntryForm({
                         maxLength={200}
                     />
                 </ProductDescription>
+
+                <div>
+                    <button style={{width:'100%', marginLeft: 'unset'}} className="addProduct buttonEffect" type="submit">
+                        Add Product
+                    </button>
+                </div>
             </div>
         </ProductDataEntryFormStyles>
     );

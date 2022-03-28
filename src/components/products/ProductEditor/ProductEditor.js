@@ -14,6 +14,7 @@ function ProductEditor({
     handleProductName,
     handleProductPrice,
     handleProductDescription,
+    handleSubmit,
 
     setProductImage,
     setProductDescription,
@@ -27,6 +28,7 @@ function ProductEditor({
                 handleProductDescription={handleProductDescription}
                 setProductImage={setProductImage}
                 setProductDescription={setProductDescription}
+                handleSubmit={handleSubmit}
             />
             <ProductPreview
                 productName={productName}
