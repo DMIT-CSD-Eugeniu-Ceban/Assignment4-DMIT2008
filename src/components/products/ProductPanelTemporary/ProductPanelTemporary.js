@@ -1,27 +1,35 @@
 import React from "react";
 
 import { ProductPanelTemporaryStyles, Card } from "./styles";
-import template from './../../../assets/images/prototype.png'
 
-function ProductPanelTemporary({ children, ...props }) {
+function ProductPanelTemporary({ children, product, ...props }) {
+    const { productName, productPrice, imageUrl, productDescription } = {
+        ...product,
+    };
     return (
         <ProductPanelTemporaryStyles {...props}>
             <Card>
                 <div>
                     <img
-                        src={template}
-                        /* width="300" */ alt="product prototype"
+                        src={imageUrl}
+                        width="305"
+                        height="210"
+                        alt="product image"
                     />
                 </div>
                 <div className="titleCard">
-                    <h2>Product Name</h2>
-                    <h2 style={{ color: "#FFD971" }}>$129.60</h2>
+                    <h2 style={{ fontSize: "2.5rem" }}>{productName}</h2>
+                    <h2
+                        style={{
+                            color: "#94a3b8",
+                            fontWeight: "400",
+                            lineHeight: "1.2rem",
+                        }}
+                    >
+                        $ {productPrice}
+                    </h2>
                 </div>
-                <p>
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page when looking at
-                    its layout.
-                </p>
+                <p>{productDescription}</p>
             </Card>
             {children}
         </ProductPanelTemporaryStyles>

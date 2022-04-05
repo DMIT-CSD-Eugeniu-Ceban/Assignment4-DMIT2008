@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import { IoChevronForward, IoAddOutline } from "react-icons/io5";
 
@@ -10,10 +10,26 @@ import {
     CenterFramePanel,
     BottomFramePanel,
 } from "../../ui/mainPanel";
-import {ProductPanelTemporary} from './../products/ProductPanelTemporary'
 
+import { useGetProducts } from "hooks/useGetProducts";
+import { ProductPanelTemporary } from './../products/ProductPanelTemporary'
+import PulseLoader from "react-spinners/PulseLoader";
+
+import { css } from "@emotion/react";
 
 function AllProductsPanel({ title, ...props }) {
+    const [loading, setLoading] = useState(true);
+    const productData = useGetProducts();
+    const override = css`
+        margin-top:10rem;
+    `;
+    useEffect(() => {
+        if (loading) {
+            setTimeout(() => {
+                setLoading(false);
+            }, 2000);
+        }
+    }, [loading]);
     return (
         <PanelColor bgcolor="#FAFAFA">
             <div>
@@ -64,16 +80,21 @@ function AllProductsPanel({ title, ...props }) {
                     </TopFramePanel>
 
                     <CenterFramePanel>
-                        <ProductPanelTemporary />
-                        <ProductPanelTemporary />
-                        <ProductPanelTemporary />
-                        <ProductPanelTemporary />
-                        <ProductPanelTemporary />
-                        <ProductPanelTemporary />
-                        <ProductPanelTemporary />
-                        <ProductPanelTemporary />
-                        <ProductPanelTemporary />
-                        <ProductPanelTemporary />
+                        <PulseLoader
+                            color="#0891b2"
+                            loading={loading}
+                            css={override}
+                            size={20}
+                            margin={6}
+                        />
+                        {!loading
+                            ? productData.map((product) => (
+                                  <ProductPanelTemporary
+                                      key={product.uid}
+                                      product={product}
+                                  />
+                              ))
+                            : null}
                     </CenterFramePanel>
 
                     <BottomFramePanel></BottomFramePanel>

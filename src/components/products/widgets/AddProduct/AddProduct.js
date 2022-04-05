@@ -5,15 +5,25 @@ import { AddProductStyles } from "./styles";
 import { ProductEditor } from "components/products/ProductEditor";
 import ProductPreview from "assets/images/ec.jpg";
 
-import{useAddNewProduct} from 'hooks/useAddNewProduct'
+import { EditorFeedBack } from "components/products/EditorFeedBack";
+import { useAddNewProduct } from "hooks/useAddNewProduct";
+
+const defaults = {
+    description: `Ut nec mi rutrum, fringilla enim id, porttitor nisl. Morbi auctor nunc a nulla imperdiet ullamcorper. Mauris nec ante vehicula, consectetur mauris in, euismod nisl. Fusce at iaculis mauris, et eleifend leo.`,
+    name: "Product Name",
+    price: 598.69
+};
 
 function AddProduct({ children, ...props }) {
-    const[isWriting, setIsWriting] = useState(false)
-    const [productName, setProductName] = useState("Product Name");
-    const [productPrice, setProductPrice] = useState("235.50");
-    const [productImage, setProductImage] = useState({previewImage:ProductPreview, file:null});
+    const [isWriting, setIsWriting] = useState(false);
+    const [productName, setProductName] = useState(defaults.name);
+    const [productPrice, setProductPrice] = useState(defaults.price);
+    const [productImage, setProductImage] = useState({
+        previewImage: ProductPreview,
+        file: null,
+    });
     const [productDescription, setProductDescription] = useState(
-        "Client product description will be here."
+        defaults.description
     );
     const [loading, productLoader] = useAddNewProduct();
 
@@ -36,16 +46,22 @@ function AddProduct({ children, ...props }) {
         const productData = {
             productName,
             productPrice,
-            productDescription
+            productDescription,
         };
 
-        setIsWriting(true)
-        productLoader(productData, productImage.file)
+        setIsWriting(true);
+        productLoader(productData, productImage.file);
+        setProductDescription(defaults.description);
+        setProductImage({ previewImage: ProductPreview, file: null });
+        setProductName(defaults.name);
+        setProductPrice(defaults.price);
     }
 
     if (isWriting) {
-        return <h1>Edit Feedback component</h1>
-    } else{
+        return (
+            <EditorFeedBack status={loading} writeCompleted={setIsWriting} />
+        );
+    } else {
         return (
             <AddProductStyles {...props}>
                 <ProductEditor

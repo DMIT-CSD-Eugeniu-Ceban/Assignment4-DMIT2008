@@ -16,12 +16,10 @@ const CenterFramePanel = styled.div`
     padding: 20px 30px 30px 30px;
     border-bottom: 1px solid #eceff1;
     min-height: 450px;
-    /* height: 100%; */
     min-height: calc(100vh - 460px);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    /* transition: all 0.1s ease-in-out; */
 `;
 
 const BottomFramePanel = styled.div`
