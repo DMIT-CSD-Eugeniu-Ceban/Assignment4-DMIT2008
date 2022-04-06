@@ -14,7 +14,7 @@ function ProductPanelTemporary({ children, product, ...props }) {
                         src={imageUrl}
                         width="305"
                         height="210"
-                        alt="product image"
+                        alt="product representation"
                     />
                 </div>
                 <div className="titleCard">
