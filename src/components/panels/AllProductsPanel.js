@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 import { IoChevronForward, IoAddOutline } from "react-icons/io5";
 
@@ -12,7 +12,7 @@ import {
 } from "../../ui/mainPanel";
 
 import { useGetProducts } from "hooks/useGetProducts";
-import { ProductPanelTemporary } from './../products/ProductPanelTemporary'
+import { ProductPanelTemporary } from "./../products/ProductPanelTemporary";
 import PulseLoader from "react-spinners/PulseLoader";
 
 import { css } from "@emotion/react";
@@ -21,7 +21,7 @@ function AllProductsPanel({ title, ...props }) {
     const [loading, setLoading] = useState(true);
     const productData = useGetProducts();
     const override = css`
-        margin-top:10rem;
+        margin-top: 10rem;
     `;
     useEffect(() => {
         if (loading) {
@@ -30,6 +30,7 @@ function AllProductsPanel({ title, ...props }) {
             }, 2000);
         }
     }, [loading]);
+
     return (
         <PanelColor bgcolor="#FAFAFA">
             <div>
@@ -87,7 +88,8 @@ function AllProductsPanel({ title, ...props }) {
                             size={20}
                             margin={6}
                         />
-                        {!loading
+
+                        {!loading && productData.length >= 3
                             ? productData.map((product) => (
                                   <ProductPanelTemporary
                                       key={product.uid}
